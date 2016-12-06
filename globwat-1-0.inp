@@ -1,0 +1,215 @@
+! 0-scenario, with irrigation
+! in- and output files, all in Arc-Info ASCII-grid format, (maximum length of character string is 100):
+! mask grid:
+input\subbas-wrld-g2014.asc
+! 12 input grids with precipitation 
+input\prc01wb.asc
+input\prc02wb.asc
+input\prc03wb.asc
+input\prc04wb.asc
+input\prc05wb.asc
+input\prc06wb.asc
+input\prc07wb.asc
+input\prc08wb.asc
+input\prc09wb.asc
+input\prc10wb.asc
+input\prc11wb.asc
+input\prc12wb.asc
+! 12 input grids with reference evapotranspiration 
+input\eto01wb.asc
+input\eto02wb.asc
+input\eto03wb.asc
+input\eto04wb.asc
+input\eto05wb.asc
+input\eto06wb.asc
+input\eto07wb.asc
+input\eto08wb.asc
+input\eto09wb.asc
+input\eto10wb.asc
+input\eto11wb.asc
+input\eto12wb.asc
+! 12 input grids with rainy days 
+input\wet01wb.asc
+input\wet02wb.asc
+input\wet03wb.asc
+input\wet04wb.asc
+input\wet05wb.asc
+input\wet06wb.asc
+input\wet07wb.asc
+input\wet08wb.asc
+input\wet09wb.asc
+input\wet10wb.asc
+input\wet11wb.asc
+input\wet12wb.asc
+! 12 input grids with coefficient of variation of precipitation 
+input\cov01wb.asc
+input\cov02wb.asc
+input\cov03wb.asc
+input\cov04wb.asc
+input\cov05wb.asc
+input\cov06wb.asc
+input\cov07wb.asc
+input\cov08wb.asc
+input\cov09wb.asc
+input\cov10wb.asc
+input\cov11wb.asc
+input\cov12wb.asc
+! input grids with maximum soil moisture
+input\hwsd-smax.asc
+! input grid with initial soil moisture
+input\hwsd-sini.asc
+! input grid with maximum deep percolation flux
+input\gwinfmx.asc
+! input grid with average effective rooting depth
+input\rtdpth5m.asc
+! input grid with land use systems to be linked with kc-values
+input\farmsys-final.asc
+! input grid with maximum soil moisture correction factor used for calibration
+input\soil-corr22.asc
+! input grid with maximum percolation flux correction factor used for calibration
+input\gw-corr.asc
+! list with kc-values per land use class
+input\farmsys-kc.prn
+! number of iterations to reach equilibrium (if needed, suggested value: 4)
+4
+! boolean indicating if random generator needs to be different every time the program is run (1 = yes)
+0
+! boolean indicating if irrigation needs to be calculated (1 = yes)
+1
+! grid with codes to be linked with irrigation kc-values and intensities
+input\adm-ataq-5min.asc
+! irrigation density grid
+input\gmia_v5_aei_pct.asc
+! list with kc-values for irrigated areas per country
+input\sum_kc_GMIA5.prn
+! list with irrigation intensities per country
+input\sum_int_GMIA5.prn
+! output grid with soil moisture content at the end of the simulation
+output\soil5m.asc
+! 12 output grids with monthly generated precipitation 
+output\prcgenjan.asc
+output\prcgenfeb.asc
+output\prcgenmar.asc
+output\prcgenapr.asc
+output\prcgenmay.asc
+output\prcgenjun.asc
+output\prcgenjul.asc
+output\prcgenaug.asc
+output\prcgensep.asc
+output\prcgenoct.asc
+output\prcgennov.asc
+output\prcgendec.asc
+! 12 output grids with monthly actual evaporation 
+output\etactjan.asc
+output\etactfeb.asc
+output\etactmar.asc
+output\etactapr.asc
+output\etactmay.asc
+output\etactjun.asc
+output\etactjul.asc
+output\etactaug.asc
+output\etactsep.asc
+output\etactoct.asc
+output\etactnov.asc
+output\etactdec.asc
+! 12 output grids with monthly deep percolation fluxes 
+output\gwfluxjan.asc
+output\gwfluxfeb.asc
+output\gwfluxmar.asc
+output\gwfluxapr.asc
+output\gwfluxmay.asc
+output\gwfluxjun.asc
+output\gwfluxjul.asc
+output\gwfluxaug.asc
+output\gwfluxsep.asc
+output\gwfluxoct.asc
+output\gwfluxnov.asc
+output\gwfluxdec.asc
+! 12 output grids with monthly drainage 
+output\runoffjan.asc
+output\runofffeb.asc
+output\runoffmar.asc
+output\runoffapr.asc
+output\runoffmay.asc
+output\runoffjun.asc
+output\runoffjul.asc
+output\runoffaug.asc
+output\runoffsep.asc
+output\runoffoct.asc
+output\runoffnov.asc
+output\runoffdec.asc
+! 12 output grids with monthly irrigation evaporation 
+output\etirrjan.asc
+output\etirrfeb.asc
+output\etirrmar.asc
+output\etirrapr.asc
+output\etirrmay.asc
+output\etirrjun.asc
+output\etirrjul.asc
+output\etirraug.asc
+output\etirrsep.asc
+output\etirroct.asc
+output\etirrnov.asc
+output\etirrdec.asc
+! end of the parameters used for soilwatbal5m 
+! from here parameters used only for flowwatbal5m -----------------------
+! grid with area in ha 
+input\ar-5mingr-ha.asc
+! grid with open water density
+input\glwd-ow.asc
+! grid with kc-values for open water
+input\1_1-grid.asc
+! grid with wetlands and marshes density
+input\glwd-wetl3.asc
+! grid with kc-values for wetlands and marshes
+input\1_1-grid.asc
+! grid with sub-basin codes
+input\subbas-wrld-g2014.asc
+! list with names and flow direction codes for each sub-basin
+input\subbas_flow2014.prn
+! grid with summary codes
+input\admin2012-5mn.asc
+! list with summary codes
+input\admin2012.prn
+! boolean indicating if monthly water balances per subbasin need to written ( 1 = yes)
+1
+! output file with monthly water balances per subbasin
+output\subbas-month.out
+! output file with yearly water balance per subbasin 
+output\subbas-yr.out
+! output file with yearly water balance per major basin 
+output\majbas-yr.out
+! boolean indicating if monthly evaporation rates over irrigated areas per summary code (country) need to written ( 1 = yes)
+1
+! output file with monthly evaporation rates over irrigated areas per summary code (country)
+output\country-month.out
+! output file with yearly water balance per summary code (country) 
+output\country-yr.out
+! boolean indicating if monthly water balance grids need to written ( 1 = yes)
+1
+! 12 output grids with monthly water balance grids
+output\etact5m-ow-jan.asc
+output\etact5m-ow-feb.asc
+output\etact5m-ow-mar.asc
+output\etact5m-ow-apr.asc
+output\etact5m-ow-may.asc
+output\etact5m-ow-jun.asc
+output\etact5m-ow-jul.asc
+output\etact5m-ow-aug.asc
+output\etact5m-ow-sep.asc
+output\etact5m-ow-oct.asc
+output\etact5m-ow-nov.asc
+output\etact5m-ow-dec.asc
+! output grid with yearly actual evaporation corrected for incremental evaporation of irrigation, water and wetlands
+output\etact5m-ow.asc
+! output grid with yearly incremental evaporation over irrigated areas 
+output\etinc5m-irr.asc
+! output grid with yearly incremental evaporation over open water 
+output\etinc5m-ow.asc
+! output grid with yearly incremental evaporation over wetlands
+output\etinc5m-wet.asc
+! boolean to indicate if accumulated runoff needs to be calculated: ( 1 = yes )
+1
+! output file with flow accumulation per sub-basin
+output\subbas_flow.out
+! end of file
