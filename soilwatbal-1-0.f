@@ -3,6 +3,7 @@
       parameter (nmnth=12, ndaay=31, nx5min=4320, ny5min=216, 
      #nbatch = 10,
      #nadmin=10000, nluclass = 10000, nout = 5, rwetdcoef=0.5)                   !!!!!!!! I added ndaay=366
+      integer:: w, j, k
       integer iluc(ny5min,nx5min),iluckc(nluclass,nmnth),
      #irkc(nadmin,nmnth),irint(nadmin,nmnth),
      #iadmin(ny5min,nx5min),mask(ny5min,nx5min)
@@ -235,18 +236,22 @@
           read(ifilprc,*)
         enddo
       endif
-      do iy=1,ny5min
-        read(ifileto,*,end=40)(reto(imnth,iy,ix),ix=1,nx5min)
-      enddo
+      write(*,*) "Hello ifileto is:", ifileto  
+      if (ifileto.LE.212) then
+        write(*,*) "I am reading because:", ifileto, "is .le. 12" 
+        do iy=1,ny5min
+          read(ifileto,*,end=40)(reto(imnth,iy,ix),ix=1,nx5min)
+        enddo
+      endif
       do iy=1,ny5min
         read(ifilprc,*,end=45)(rprc(idaay,iy,ix),ix=1,nx5min)
         !read(ifileto,*)(reto(imnth,iy,ix),ix=1,nx5min)
         !read(ifilwet,*)(rwet(imnth,iy,ix),ix=1,nx5min)
         !read(ifilcov,*)(rcov(imnth,iy,ix),ix=1,nx5min)
       enddo
-!     next file next month
+!     next file next month  
 40    ifileto = ifileto + 1
-45    ifilprc = ifilprc + 1      !!! I added 45
+45    ifilprc = ifilprc + 1 
       !ifilwet = ifilwet + 1
       !ifilcov = ifilcov + 1
       imnth = imnth + 1
@@ -693,4 +698,3 @@
 !!
 !      return
 !      end
-
