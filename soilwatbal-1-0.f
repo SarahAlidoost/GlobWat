@@ -1,6 +1,6 @@
       program soilwatbal_1_0
 !
-      parameter (nmnth=12, ndaay=31, nx5min=4320, ny5min=216, 
+      parameter (nmnth=12, ndaay=366, nx5min=4320, ny5min=216, 
      #nbatch = 10,
      #nadmin=10000, nluclass = 10000, nout = 5, rwetdcoef=0.5)                   !!!!!!!! I added ndaay=366
       integer:: w, j, k
@@ -23,7 +23,7 @@
 !      integer iyrday
 !
 !     open parameter file
-      open(10,file='globwat-1-0.inp',status='old')
+      open(10,file='globwat_soil_366_d_prc.inp',status='old')
       read(10,*)
       read(10,*)
       read(10,*)
@@ -33,13 +33,13 @@
       read(10,*)
 !      write(*,*) "Hello here I say cfilin: ",  cfilin
 !     Open precipitation files
-      do i = 101, 131 ! 11,376
+      do i = 101, 466 ! 11,376
         read(10,*) cfilin
         open(i,file=cfilin,status='old')
       enddo
       read(10,*)
 !     Open reference evapotranspiration files
-      do i = 201, 212 
+      do i = 501, 512 
         read(10,*)cfilin
         open(i,file=cfilin,status='old')
       enddo
@@ -216,7 +216,7 @@
       ifilprc = 101 
 !loop up for reading prc data 
       !ifileto = 23
-      ifileto = 201   
+      ifileto = 501  
 !loop up for reading prc data 
       !ifilwet = 35
       !ifilcov = 47
@@ -236,8 +236,11 @@
           read(ifilprc,*)
         enddo
       endif
+!Banafsheh 
       write(*,*) "Hello ifileto is:", ifileto  
-      if (ifileto.LE.212) then
+      write(*,*) "Hello ifilprc is:", ifilprc
+!End Banafsheh 
+      if (ifileto.LE.512) then
         write(*,*) "I am reading because:", ifileto, "is .le. 12" 
         do iy=1,ny5min
           read(ifileto,*,end=40)(reto(imnth,iy,ix),ix=1,nx5min)
@@ -257,7 +260,7 @@
       imnth = imnth + 1
       idaay = idaay + 1 
       if(imnth.le.12)goto 30
-      if(idaay.le.31)goto 35   !!! I added 35 
+      if(idaay.le.366)goto 35   !!! I added 35 
 !     read mask, soil moisture, initial ground water flux, rooting depth
 !     and land use class files
       ifilmask = 9
@@ -545,15 +548,15 @@
 95    if (ibatch.gt.1)backspace(99)
       do j=1,ny5min
          if(iout.eq.1)
-     #     write(99,'(4320(f8.1))')(smprc(imonth,j,k),k=1,nx5min)
+     #     write(99,'(4320(f10.1))')(smprc(imonth,j,k),k=1,nx5min)
          if(iout.eq.2)
-     #     write(99,'(4320(f8.1))')(smetact(imonth,j,k),k=1,nx5min)
+     #     write(99,'(4320(f10.1))')(smetact(imonth,j,k),k=1,nx5min)
          if(iout.eq.3)
-     #     write(99,'(4320(f8.1))')(smflx(imonth,j,k),k=1,nx5min)
+     #     write(99,'(4320(f10.1))')(smflx(imonth,j,k),k=1,nx5min)
          if(iout.eq.4)
-     #     write(99,'(4320(f8.1))')(smrun(imonth,j,k),k=1,nx5min)
+     #     write(99,'(4320(f10.1))')(smrun(imonth,j,k),k=1,nx5min)
          if(iout.eq.5)
-     #     write(99,'(4320(f8.1))')(smirr(imonth,j,k),k=1,nx5min)
+     #     write(99,'(4320(f10.1))')(smirr(imonth,j,k),k=1,nx5min)
       enddo
       close(99)
       imonth = imonth+1
@@ -698,3 +701,4 @@
 !!
 !      return
 !      end
+
